@@ -34,14 +34,15 @@ const routes = [
   },
   {
     path: "/auth",
-    name: "AuthView",
+    name: "Auth",
     component: AuthView,
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+  linkActiveClass: "current",
+});
 
 export default router
