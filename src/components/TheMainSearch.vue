@@ -2,17 +2,13 @@
   <div class="main-search-input">
     <div class="main-search-input-item location">
       <div id="autocomplete-container">
-        <input id="autocomplete-input" type="text" placeholder="Location" />
+        <input id="autocomplete-input" type="text" placeholder="Location" v-model="keyword"/>
       </div>
       <a href="#"><i class="fa fa-map-marker"></i></a>
-      <ul class="list-location">
-        <li>
+      <ul v-if="locationList.length > 0 && keyword" class="list-location">
+        <li v-for="(location, index) in locationList" :key="index">
             <span class="im im-icon-Location-2"></span>
-            <span class="location-item-title">Nha Trang</span>
-        </li>
-        <li>
-            <span class="im im-icon-Location-2"></span>
-            <span class="location-item-title">An Giang</span>
+            <span class="location-item-title">{{location.name}}</span>
         </li>
       </ul>
     </div>
@@ -27,7 +23,26 @@
 </template>
 
 <script>
-export default {};
+import { computed, ref, watch } from 'vue';
+import { useStore } from 'vuex';
+export default {
+  setup(){
+    const keyword = ref(""); //luu lai thong tin input tren man hinh
+    const store = useStore();
+    
+    watch(keyword,(newKeyword) => {
+      store.dispatch("location/getLocationListAction", newKeyword);
+    });
+    
+    //get data tu store
+    const locationList = computed(() => store.state.location.locationList);
+    
+    return{
+      locationList,
+      keyword
+    }
+  },
+};
 </script>
 
 <style lang="scss">
