@@ -9,8 +9,8 @@
     </div>
 
     <!-- Listings -->
-    <div class="row fs-listings">
-      <room-list-items></room-list-items>
+    <div class="row fs-listings" v-if="roomList.length > 0">
+      <room-list-items v-for="(room, index) in roomList" :key="index" :room="room"></room-list-items>
     </div>
     <!-- Listings Container / End -->
 
@@ -50,9 +50,18 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 import RoomListItems from "./RoomListItems.vue";
 export default {
   components: { RoomListItems },
+  setup(){
+    const store = useStore();
+    const roomList = computed(() => store.state.rooms.roomList);
+    return {
+      roomList,
+    }
+  }
 };
 </script>
 

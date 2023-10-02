@@ -163,11 +163,7 @@
       </div>
       <div class="fs-inner-container map-fixed">
         <!-- Map -->
-        <div id="map-container">
-          <div id="map" data-map-zoom="9" data-map-scroll="true">
-            <!-- map goes here -->
-          </div>
-        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d502025.9174625086!2d104.8457805832552!3d10.573110010855002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a198a4ee22a8d%3A0xdc1cb02c52c088ba!2sAn%20Giang%2C%20Vietnam!5e0!3m2!1sen!2s!4v1696255169015!5m2!1sen!2s" style="border:0; width: 100%; height: 100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
@@ -175,8 +171,15 @@
 
 <script>
 import RoomList from "@/components/RoomList.vue";
+import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
 export default {
   components: { RoomList },
+  setup(){
+    const route = useRoute();
+    const store = useStore();
+    store.dispatch("rooms/getRoomListAction", route.params.locationId)
+  },
 };
 </script>
 

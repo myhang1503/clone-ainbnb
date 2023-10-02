@@ -6,7 +6,7 @@
       </div>
       <a href="#"><i class="fa fa-map-marker"></i></a>
       <ul v-if="locationList.length > 0 && keyword" class="list-location">
-        <li v-for="(location, index) in locationList" :key="index">
+        <li v-for="(location, index) in locationList" :key="index" @click="handleClickLocation(location)">
             <span class="im im-icon-Location-2"></span>
             <span class="location-item-title">{{location.name}}</span>
         </li>
@@ -25,10 +25,12 @@
 <script>
 import { computed, ref, watch } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from "vue-router";
 export default {
   setup(){
     const keyword = ref(""); //luu lai thong tin input tren man hinh
     const store = useStore();
+    const router = useRouter();
     
     watch(keyword,(newKeyword) => {
       store.dispatch("location/getLocationListAction", newKeyword);
@@ -37,9 +39,14 @@ export default {
     //get data tu store
     const locationList = computed(() => store.state.location.locationList);
     
+    const handleClickLocation = (location) => {
+      console.log(location);
+      router.push(`/rooms/${location._id}`);
+    }
     return{
       locationList,
-      keyword
+      keyword,
+      handleClickLocation
     }
   },
 };
