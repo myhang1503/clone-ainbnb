@@ -21,7 +21,7 @@ axiosApi.interceptors.request.use(
 //from server return data...
 axiosApi.interceptors.response.use(
   function (response) {
-    return response.data;
+    return response;
   },
   function (error) {
     //Do something with request error
