@@ -1,7 +1,7 @@
 <template>
   <div class="col-lg-12 col-md-12">
     <div class="listing-item-container list-layout" data-marker-id="1">
-      <a href="listings-single-page.html" class="listing-item">
+      <div class="listing-item">
         <!-- Image -->
         <div class="listing-item-image">
           <img :src="room.image" alt="" />
@@ -23,7 +23,7 @@
           <span class="like-icon"></span>
           <div class="listing-item-details">Price: {{room.price}} d</div>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </template>

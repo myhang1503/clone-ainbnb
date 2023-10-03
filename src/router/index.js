@@ -23,7 +23,7 @@ const routes = [
     component: RoomsView,
   },
   {
-    path: "/room-detail",
+    path: "/room-detail/:roomId",
     name: "RoomDetail",
     component: RoomDetail,
   },

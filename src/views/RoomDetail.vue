@@ -786,7 +786,15 @@
 </template>
 
 <script>
-export default {};
+import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+export default {
+  setup(){
+    const store = useStore();
+    const route = useRoute();
+    store.dispatch("rooms/getRoomDetailAction", route.params.roomId);
+  }
+};
 </script>
 
 <style></style>
