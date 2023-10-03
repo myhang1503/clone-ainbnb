@@ -12,7 +12,7 @@ const mutations = {
 const actions = {
   async getLocationListAction(context, payload) {
     const data = await getLocationListApi(payload);
-    console.log(data);
+    //console.log(data);
     context.commit("setLocationMutation", data);
   },
 };

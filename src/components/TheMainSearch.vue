@@ -40,7 +40,7 @@ export default {
     const locationList = computed(() => store.state.location.locationList);
     
     const handleClickLocation = (location) => {
-      console.log(location);
+      //console.log(location);
       router.push(`/rooms/${location._id}`);
     }
     return{

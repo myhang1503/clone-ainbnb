@@ -1,7 +1,7 @@
 <template>
   <div class="col-lg-12 col-md-12">
     <div class="listing-item-container list-layout" data-marker-id="1">
-      <div class="listing-item">
+      <div class="listing-item" @click="handleClickRoomDetail(room)">
         <!-- Image -->
         <div class="listing-item-image">
           <img :src="room.image" alt="" />
@@ -29,11 +29,22 @@
 </template>
 
 <script>
-
+import { useRouter } from 'vue-router';
 export default {
   props:{
     room:{
       type: Object,
+    }
+  },
+  setup(){
+    const router = useRouter();
+    const handleClickRoomDetail = (room) =>{
+      console.log(room);
+      router.push(`/room-detail/${room._id}`);
+    };
+
+    return {
+      handleClickRoomDetail,
     }
   }
   
