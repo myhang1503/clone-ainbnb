@@ -48,7 +48,8 @@
         <!-- Right Side Content / End -->
         <div class="right-side">
           <div class="header-widget">
-            <router-link to="/auth" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</router-link>
+            <router-link to="/sign-in" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</router-link>
+            <router-link to="/sign-up" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-user-follow"></i> Sign Up</router-link>
             <!-- User Menu -->
             <div class="user-menu">
               <div class="user-name">
