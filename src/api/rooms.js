@@ -7,3 +7,7 @@ export const getRoomListByLocationApi = (locationId) => {
 export const getRoomDetailApi = (roomId) => {
   return axiosApi.get(`/api/rooms/${roomId}`);
 };
+
+export const getRoomReviewApi = (roomId) => {
+  return axiosApi.get(`/api/reviews/byRoom?roomId=${roomId}`);
+};

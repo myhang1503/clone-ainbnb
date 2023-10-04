@@ -12,16 +12,10 @@
           <!-- Titlebar -->
           <div id="titlebar" class="listing-titlebar">
             <div class="listing-titlebar-title">
-              <h2>
-                Sunny and Modern Apartment<span class="listing-tag"
-                  >Apartments</span
-                >
-              </h2>
+              <h2>{{roomDetail.name}}</h2>
               <span>
-                <a href="#listing-location" class="listing-address">
                   <i class="fa fa-map-marker"></i>
-                  2726 Shinn Street, New York
-                </a>
+                  {{roomDetail.locationId.name}}, {{roomDetail.locationId.country}}
               </span>
               <div class="star-rating" data-rating="5">
                 <div class="rating-counter">
@@ -46,30 +40,13 @@
           <div id="listing-overview" class="listing-section">
             <!-- Apartment Description -->
             <ul class="apartment-details">
-              <li>2 rooms</li>
-              <li>1 bedroom</li>
-              <li>1 bed</li>
-              <li>1 bathroom</li>
+              <li>{{roomDetail.guest}} guest</li>
+              <li>{{roomDetail.bedRoom}} bedroom</li>
+              <li>{{roomDetail.bath}} bath</li>
             </ul>
 
             <!-- Description -->
-            <p>
-              Ut euismod ultricies sollicitudin. Curabitur sed dapibus nulla.
-              Nulla eget iaculis lectus. Mauris ac maximus neque. Nam in mauris
-              quis libero sodales eleifend. Morbi varius, nulla sit amet rutrum
-              elementum, est elit finibus tellus, ut tristique elit risus at
-              metus.
-            </p>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a
-              consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et
-              pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur
-              convallis fringilla diam sed aliquam. Sed tempor iaculis massa
-              faucibus feugiat. In fermentum facilisis massa, a consequat purus
-              viverra.
-            </p>
+            <p>{{roomDetail.description}}</p>
 
             <!-- Listing Contacts -->
             <div class="listing-links-container">
@@ -133,51 +110,7 @@
           <!-- Slider -->
           <div id="listing-gallery" class="listing-section">
             <h3 class="listing-desc-headline margin-top-70">Gallery</h3>
-            <div
-              class="listing-slider-small mfp-gallery-container margin-bottom-0"
-            >
-              <a
-                href="images/single-listing-02a.jpg"
-                data-background-image="images/single-listing-02a.jpg"
-                class="item mfp-gallery"
-                title="Title 2"
-              ></a>
-              <a
-                href="images/single-listing-01a.jpg"
-                data-background-image="images/single-listing-01a.jpg"
-                class="item mfp-gallery"
-                title="Title 1"
-              ></a>
-              <a
-                href="images/single-listing-03a.jpg"
-                data-background-image="images/single-listing-03a.jpg"
-                class="item mfp-gallery"
-                title="Title 3"
-              ></a>
-              <a
-                href="images/single-listing-04a.jpg"
-                data-background-image="images/single-listing-04a.jpg"
-                class="item mfp-gallery"
-                title="Title 3"
-              ></a>
-            </div>
-          </div>
-
-          <!-- Location -->
-          <div id="listing-location" class="listing-section">
-            <h3 class="listing-desc-headline margin-top-60 margin-bottom-30">
-              Location
-            </h3>
-
-            <div id="singleListingMap-container">
-              <div
-                id="singleListingMap"
-                data-latitude="40.70437865245596"
-                data-longitude="-73.98674011230469"
-                data-map-icon="im im-icon-Hamburger"
-              ></div>
-              <a href="#" id="streetView">Street View</a>
-            </div>
+            <img :src="roomDetail.image"/>
           </div>
 
           <!-- Reviews -->
@@ -264,83 +197,25 @@
             <!-- Reviews -->
             <section class="comments listing-reviews">
               <ul>
-                <li>
+                <li v-for="(review, index) in roomReview" :key="index">
                   <div class="avatar">
-                    <img
-                      src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70"
-                      alt=""
-                    />
+                    <img :src="review.userId.avatar" alt="" />
                   </div>
                   <div class="comment-content">
                     <div class="arrow-comment"></div>
                     <div class="comment-by">
-                      Kathy Brown
+                      {{review.userId.name}}
                       <i
                         class="tip"
                         data-tip-content="Person who left this review actually was a customer"
                       ></i>
-                      <span class="date">June 2019</span>
+                      <span class="date">{{review.updatedAt}}</span>
                       <div class="star-rating" data-rating="5"></div>
                     </div>
-                    <p>
-                      Morbi velit eros, sagittis in facilisis non, rhoncus et
-                      erat. Nam posuere tristique sem, eu ultricies tortor
-                      imperdiet vitae. Curabitur lacinia neque non metus
-                    </p>
+                    <p>{{review.content}}</p>
                     <a href="#" class="rate-review"
                       ><i class="sl sl-icon-like"></i> Helpful Review
                       <span>12</span></a
-                    >
-                  </div>
-                </li>
-
-                <li>
-                  <div class="avatar">
-                    <img
-                      src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70"
-                      alt=""
-                    />
-                  </div>
-                  <div class="comment-content">
-                    <div class="arrow-comment"></div>
-                    <div class="comment-by">
-                      John Doe<span class="date">May 2019</span>
-                      <div class="star-rating" data-rating="4"></div>
-                    </div>
-                    <p>
-                      Commodo est luctus eget. Proin in nunc laoreet justo
-                      volutpat blandit enim. Sem felis, ullamcorper vel aliquam
-                      non, varius eget justo. Duis quis nunc tellus sollicitudin
-                      mauris.
-                    </p>
-                    <a href="#" class="rate-review"
-                      ><i class="sl sl-icon-like"></i> Helpful Review
-                      <span>2</span></a
-                    >
-                  </div>
-                </li>
-
-                <li>
-                  <div class="avatar">
-                    <img
-                      src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70"
-                      alt=""
-                    />
-                  </div>
-                  <div class="comment-content">
-                    <div class="arrow-comment"></div>
-                    <div class="comment-by">
-                      John Doe<span class="date">May 2019</span>
-                      <div class="star-rating" data-rating="5"></div>
-                    </div>
-                    <p>
-                      Commodo est luctus eget. Proin in nunc laoreet justo
-                      volutpat blandit enim. Sem felis, ullamcorper vel aliquam
-                      non, varius eget justo. Duis quis nunc tellus sollicitudin
-                      mauris.
-                    </p>
-                    <a href="#" class="rate-review"
-                      ><i class="sl sl-icon-like"></i> Helpful Review</a
                     >
                   </div>
                 </li>
@@ -786,13 +661,24 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 export default {
   setup(){
     const store = useStore();
     const route = useRoute();
+
     store.dispatch("rooms/getRoomDetailAction", route.params.roomId);
+    const roomDetail = computed(() => store.state.rooms.roomDetail);
+
+    store.dispatch("rooms/getRoomReviewAction", route.params.roomId);
+    const roomReview = computed(() => store.state.rooms.roomReview);
+    
+    return{
+      roomDetail,
+      roomReview,
+    }
   }
 };
 </script>
