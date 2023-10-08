@@ -13,6 +13,9 @@ const mutations = {
     state.userLogin = payload;
     localStorage.setItem("userLogin", JSON.stringify(payload));
   },
+  setUserLoginFromLocalStorage(state, payload) {
+    state.userLogin = payload;
+  },
 };
 const actions = {
   async signUpAction(context, { data, router }) {
@@ -30,6 +33,13 @@ const actions = {
     } catch (error) {
       alert("Incorrect.");
     }
+  },
+  loadUserLoginFromLocalStorageAction(context) {
+    let userLogin = {};
+    if (localStorage.getItem("userLogin")) {
+      userLogin = JSON.parse(localStorage.getItem("userLogin"));
+    }
+    context.commit("setUserLoginFromLocalStorage", userLogin);
   },
 };
 

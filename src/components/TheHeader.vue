@@ -72,8 +72,8 @@
                   >
                 </li>
                 <li>
-                  <a href="index.html"
-                    ><i class="sl sl-icon-power"></i> Logout</a
+                  <button @click="handleLogout"
+                    ><i class="sl sl-icon-power"></i> Logout</button
                   >
                 </li>
               </ul>
@@ -102,8 +102,13 @@ export default {
   setup(){
     const store = useStore();
     const userLogin = computed(() => store.state.auth.userLogin);
+    const handleLogout = () => {
+      localStorage.removeItem("userLogin");
+      store.dispatch("auth/loadUserLoginFromLocalStorageAction");
+    }
     return {
-      userLogin
+      userLogin,
+      handleLogout
     }
   }
 };
