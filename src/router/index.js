@@ -6,6 +6,7 @@ import RoomDetail from "../views/RoomDetail.vue";
 import ContactView from "../views/ContactView.vue";
 import SignInView from "../views/SignInView.vue";
 import SignUpView from "../views/SignUpView.vue";
+import BookingView from "../views/BookingView.vue";
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: "/sign-up",
     name: "SignUp",
     component: SignUpView,
+  },
+  {
+    path: "/booking/:roomId",
+    name: "Booking",
+    component: BookingView,
   },
 ];
 

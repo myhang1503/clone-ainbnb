@@ -15,7 +15,7 @@
               <h2>{{roomDetail.name}}</h2>
               <span>
                   <i class="fa fa-map-marker"></i>
-                  {{roomDetail.locationId.name}}, {{roomDetail.locationId.country}}
+                  {{roomDetail.locationId.province}}, {{roomDetail.locationId.country}}
               </span>
               <div class="star-rating" data-rating="5">
                 <div class="rating-counter">
@@ -536,17 +536,12 @@
             </div>
 
             <!-- Book Now -->
-            <a
-              href="pages-booking.html"
+            <router-link
+              :to="`/booking/${roomDetail._id}`"
               class="button book-now fullwidth margin-top-5"
-              >Request To Book</a
+              >Request To Book</router-link
             >
 
-            <!-- Estimated Cost -->
-            <!-- 				<div class="booking-estimated-cost">
-					<strong>Total Cost</strong>
-					<span>$49</span>
-				</div> -->
           </div>
           <!-- Book Now / End -->
 

@@ -12,19 +12,19 @@
 
 						<!-- Login -->
 						<div class="tab-content" id="tab1" style="">
-							<form method="post" class="login">
+							<form @submit.prevent="handleLogin" class="login">
 
 								<p class="form-row form-row-wide">
-									<label for="username">Username:
-										<i class="im im-icon-Male"></i>
-										<input type="text" class="input-text" name="username" id="username" value="">
+									<label for="username">Email:
+										<i class="im im-icon-Mail"></i>
+										<input type="text" class="input-text" name="email" id="email" v-model="userLogin.email">
 									</label>
 								</p>
 
 								<p class="form-row form-row-wide">
 									<label for="password">Password:
 										<i class="im im-icon-Lock-2"></i>
-										<input class="input-text" type="password" name="password" id="password">
+										<input class="input-text" type="password" name="password" id="password" v-model="userLogin.password">
 									</label>
 									<span class="lost_password">
 										<a href="#">Lost Your Password?</a>
@@ -49,7 +49,26 @@
 </template>
 
 <script>
-export default {};
+import { reactive } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+export default {
+	setup(){
+		const userLogin = reactive({
+			email: "",
+			password: ""
+		});
+		const store = useStore();
+		const router = useRouter();
+		const handleLogin = () => {
+			store.dispatch("auth/signInAction",{data: userLogin, router}); // bien phai cung ten, khong cung ten thi dung data: userlogin
+		}
+		return{
+			userLogin,
+			handleLogin
+		}
+	}
+};
 </script>
 
 <style lang="scss">

@@ -2,6 +2,7 @@ import {
   getRoomListByLocationApi,
   getRoomDetailApi,
   getRoomReviewApi,
+  bookingRoomApi,
 } from "../../api/rooms";
 
 const state = () => {
@@ -34,6 +35,13 @@ const actions = {
   async getRoomReviewAction(context, payload) {
     const roomReview = await getRoomReviewApi(payload);
     context.commit("setRoomReviewMutation", roomReview);
+  },
+  async bookingRoomAction(context, payload) {
+    const data = await bookingRoomApi(payload);
+
+    console.log(data);
+    console.log(context);
+    //context.commit("setUserRegisterMutation", userRegister);
   },
 };
 
