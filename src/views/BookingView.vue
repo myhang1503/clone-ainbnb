@@ -105,7 +105,7 @@
 			</div>
 			<!-- Payment Methods Accordion / End -->
 		
-			<button @click="handleBooking" class="button booking-confirmation-btn margin-top-40 margin-bottom-65">Confirm and Pay</button>
+			<button @click="handleBooking(userLogin)" class="button booking-confirmation-btn margin-top-40 margin-bottom-65">Confirm and Pay</button>
 		</div>
 
 
@@ -153,31 +153,38 @@
 
 <script>
 import { computed, reactive } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex'
 export default {
 	setup(){
 		const store = useStore();
 		const route = useRoute();
+		const router = useRouter();
+		
 		const timeRequest = reactive({
 			checkIn: "",
 			checkOut: ""
 		});
 
 		store.dispatch("rooms/getRoomDetailAction",route.params.roomId);
+		
+		const userLogin = computed(() => store.state.auth.userLogin);
 		const roomDetail = computed(() => store.state.rooms.roomDetail);
-		const handleBooking = () =>{
+
+		const handleBooking = (userLogin) =>{
 			const data = {
 				"roomId" : route.params.roomId, 
 				"checkIn": timeRequest.checkIn, 
 				"checkOut": timeRequest.checkOut
 			}
-			store.dispatch("rooms/bookingRoomAction",data);
+			store.dispatch("rooms/bookingRoomAction", data);
+			router.push(`/user-profile/${userLogin.user._id}`);
 		}
 		return{
 			roomDetail,
 			handleBooking,
-			timeRequest
+			timeRequest,
+			userLogin
 		}
 	}
 }
